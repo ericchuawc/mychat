@@ -1,8 +1,13 @@
 language: elixir
 elixir:
-  - 1.7.3
+  - 1.6
 addons:
-  postgresql: '10.5'
+  postgresql: '9.5'
+services:
+  - postgresql
+before_script:
+  - cp config/travis.exs config/test.exs
+  - mix do ecto.create, ecto.migrate
 env:
   - MIX_ENV=test
 script:
